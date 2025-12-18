@@ -78,7 +78,7 @@ class TestIntelligentOffice(unittest.TestCase):
         servo.return_value = 180
         clock.return_value = datetime(2025, 12, 18, 8, 00)
         office.manage_blinds_based_on_time()
-        servo.assert_called_once_with(180)  #output indiretto
+        servo.assert_called_once_with(office.SERVO_PIN, 180)  #output indiretto
         self.assertTrue(office.blinds_open) #output diretto
 
 
