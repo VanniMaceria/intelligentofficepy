@@ -60,11 +60,17 @@ class IntelligentOffice:
         if pin == self.INFRARED_PIN2:
             return self.check_second_quadrant()
 
+        if pin == self.INFRARED_PIN3:
+            return self.check_third_quadrant()
+
     def check_first_quadrant(self) -> bool:
         return GPIO.input(self.INFRARED_PIN1)
 
     def check_second_quadrant(self) -> bool:
         return GPIO.input(self.INFRARED_PIN2)
+
+    def check_third_quadrant(self) -> bool:
+        return GPIO.input(self.INFRARED_PIN3)
 
     def manage_blinds_based_on_time(self) -> None:
         # To be implemented
