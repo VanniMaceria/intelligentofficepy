@@ -54,6 +54,9 @@ class IntelligentOffice:
         self.buzzer_on = False
 
     def check_quadrant_occupancy(self, pin: int) -> bool:
+        if pin in [self.LED_PIN, self.SERVO_PIN, self.GAS_PIN, self.BUZZER_PIN]:
+            raise IntelligentOfficeError
+
         if pin == self.INFRARED_PIN1:
             return self.check_first_quadrant()
 
