@@ -70,6 +70,17 @@ class TestIntelligentOffice(unittest.TestCase):
         office = IntelligentOffice()
         self.assertRaises(IntelligentOfficeError, office.check_quadrant_occupancy, office.LED_PIN)
 
+    @patch.object(SDL_DS3231, "read_datetime")
+    @patch.object(GPIO, "output")
+    def test_manage_blinds_based_on_time_blinds_opened(self, servo: Mock, clock: Mock):
+        office = IntelligentOffice()
+        office.blinds_open = False  #per sicurezza
+        servo.return_value = 180
+        clock.return_value = datetime(2025, 12, 18, 8, 00)
+        office.manage_blinds_based_on_time()
+        servo.assert_called_once_with(180)  #output indiretto
+        self.assertTrue(office.blinds_open) #output diretto
+
 
 
 
