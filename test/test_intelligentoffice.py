@@ -22,3 +22,5 @@ class TestIntelligentOffice(unittest.TestCase):
         office = IntelligentOffice()
         outcome = office.check_quadrant_occupancy(office.INFRARED_PIN1)
         self.assertFalse(outcome)
+
+
