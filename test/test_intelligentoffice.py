@@ -65,6 +65,11 @@ class TestIntelligentOffice(unittest.TestCase):
         outcome = office.check_quadrant_occupancy(office.INFRARED_PIN4)
         self.assertFalse(outcome)
 
+    @patch.object(GPIO, "input")
+    def test_check_quadrant_raises_error(self, infrared: Mock):
+        office = IntelligentOffice()
+        self.assertRaises(IntelligentOfficeError, office.check_quadrant_occupancy, office.LED_PIN)
+
 
 
 
