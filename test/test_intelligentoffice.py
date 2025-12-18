@@ -15,3 +15,10 @@ class TestIntelligentOffice(unittest.TestCase):
         office = IntelligentOffice()
         outcome = office.check_quadrant_occupancy(office.INFRARED_PIN1)
         self.assertTrue(outcome)
+
+    @patch.object(GPIO, "input")
+    def test_check_first_quadrant_is_not_occupied(self, infrared: Mock):
+        infrared.return_value = False
+        office = IntelligentOffice()
+        outcome = office.check_quadrant_occupancy(office.INFRARED_PIN1)
+        self.assertFalse(outcome)
